@@ -27,7 +27,7 @@ also, have a build pushed to docker hub before setting up deployment with scaffo
 ---
 
 Imperative command to create a secret object in k8s cluster:
-kubectl create secret generic jwt-secret --from-literal=jwt=asdf
+kubectl create secret generic jwt-secret --from-literal JWT_KEY=asdf
 
 ---
 
@@ -47,3 +47,16 @@ Testing all of this is much hassell so instead, focus on only testing isolation.
     1. Basic Request Handling
     2. Some tests around models
     3. Emitting + receiving
+
+---
+
+## When getInitialService is executed in browser vs server
+
+| Request Source                                      | getInititalProps |
+| --------------------------------------------------- | ---------------- |
+| Hard Refresh Of Page                                | Server           |
+| clicking link from different domain                 | Server           |
+| Typing URL into Address bar                         | Server           |
+| Navigating from one app to another while in the app | on the client    |
+
+---
