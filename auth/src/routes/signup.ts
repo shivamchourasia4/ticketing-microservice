@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { BadRequestError } from "../errors/bad-request-error";
+import { BadRequestError } from "@skctickets/common";
 import { User } from "../models/user";
-import { validateRequest } from "../middleware/validate-request";
+import { validateRequest } from "@skctickets/common";
 
 const router = express.Router();
 
