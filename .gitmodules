@@ -1,0 +1,3 @@
+[submodule "ticketing-common"]
+    path = common
+    url="https://github.com/shivamchourasia4/ticketing-common"
