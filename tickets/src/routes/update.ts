@@ -7,6 +7,8 @@ import {
   NotAuthorizedError,
 } from "@skctickets/common";
 import { Ticket } from "../models/ticket";
+import { TicketUpdatedPublisher } from "../events/publishers/ticket-updated-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -36,7 +38,14 @@ router.put(
       price: req.body.price,
     });
     await ticket.save();
-
+    // neglecting await here during event publishing as it not that big issue in our case
+    //also we are not implementing 'Database Transaction'
+    new TicketUpdatedPublisher(natsWrapper.client).publish({
+      id: ticket.id,
+      title: ticket.title,
+      price: ticket.price,
+      userId: ticket.userId,
+    });
     res.send(ticket);
   }
 );
