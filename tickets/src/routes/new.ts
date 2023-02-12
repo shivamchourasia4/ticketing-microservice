@@ -3,8 +3,8 @@ import { body } from "express-validator";
 import { requireAuth, validateRequest } from "@skctickets/common";
 import { Ticket } from "../models/ticket";
 import { TicketCreatedPublisher } from "../events/publishers/ticket-created-publisher";
-import second from "nats";
 import { natsWrapper } from "../nats-wrapper";
+
 const router = express.Router();
 
 router.post(
@@ -32,6 +32,7 @@ router.post(
       title: ticket.title,
       price: ticket.price,
       userId: ticket.userId,
+      version: ticket.version,
     });
 
     res.status(201).send(ticket);
