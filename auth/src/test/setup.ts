@@ -7,6 +7,8 @@ declare global {
   var signin: () => Promise<string[]>;
 }
 
+console.log("testing ci workflow!");
+
 let mongo: any;
 beforeAll(async () => {
   process.env.JWT_KEY = "asdfasdf";
